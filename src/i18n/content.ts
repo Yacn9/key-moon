@@ -60,15 +60,16 @@ export type TAppCopy = {
 	};
 	info: {
 		description: string;
-		supportTitle: string;
-		supportHint: string;
-		supportText: string;
-		supportIdLabel: string;
-		supportNoteLabel: string;
-		supportIdValue: string;
-		supportNoteValue: string;
-		buttonLabel: string;
-		buttonHint: string;
+		donateTitle: string;
+		donateIntro: string;
+		donateLinks: Array<{
+			label: string;
+			href: string;
+		}>;
+		donateWallets: Array<{
+			label: string;
+			value: string;
+		}>;
 	};
 	help: {
 		languageToggle: string;
@@ -137,17 +138,17 @@ export const content: Record<TLanguage, TAppCopy> = {
 		},
 		info: {
 			description:
-				"این ابزار متن را با کلید پیش‌فرض یا کلید دلخواه شما به یک رشته فارسی تبدیل می‌کند. برای امنیت، کلید پیش‌فرض در هر دوره به‌روزرسانی می‌شود؛ بهتر است کلید اختصاصی خودتان را تنظیم کنید.",
-			supportTitle: "حمایت و دونیت",
-			supportHint: "اینجا برای معرفی لینک یا شناسه حمایت شماست.",
-			supportText:
-				"برای حمایت، شناسه یا لینک پرداخت خودتان را اینجا قرار دهید. این بخش فقط یک جاگیر است و قابل شخصی‌سازی است.",
-			supportIdLabel: "شناسه",
-			supportNoteLabel: "یادداشت",
-			supportIdValue: "donate-id",
-			supportNoteValue: "با انرژی شما این ابزار هر روز تازه می‌شود.",
-			buttonLabel: "ثبت لینک حمایت",
-			buttonHint: "می‌توانید لینک پرداخت یا شناسه را از اینجا ذخیره کنید.",
+				"این ابزار به شما کمک می‌کند متن خود را با یک کلید خصوصی قفل کنید و هر زمان خواستید دوباره بازش کنید. کافی است متن را وارد کنید تا تبدیل شود، سپس با همان کلید آن را برگردانید. برای امنیت بیشتر، کلید پیش‌فرض به‌صورت دوره‌ای تغییر می‌کند؛ اگر می‌خواهید همیشه به متن‌تان دسترسی داشته باشید، بهتر است کلید اختصاصی خودتان را انتخاب کنید.",
+			donateTitle: "حمایت و دونیت",
+			donateIntro: "اگر این ابزار برایتان مفید بود، می‌توانید از راه‌های زیر حمایت کنید:",
+			donateLinks: [
+				{ label: "Reymit", href: "https://reymit.ir/yacn9" },
+				{ label: "Daramet", href: "https://daramet.com/yacn9" },
+			],
+			donateWallets: [
+				{ label: "Tether (BEP20)", value: "0xa729EC0799Ef220f56A8e060E0c961a11925041c" },
+				{ label: "Tether (TRC20)", value: "TYUgWDrmoPfja1ueuYmLiGck6dURj5hM7D" },
+			],
 		},
 		help: {
 			languageToggle: "زبان رابط را تغییر دهید.",
@@ -214,17 +215,17 @@ export const content: Record<TLanguage, TAppCopy> = {
 		},
 		info: {
 			description:
-				"This tool transforms text using the default key or your custom key. For safety, the default key rotates periodically, so set your own key for consistency.",
-			supportTitle: "Support & Donate",
-			supportHint: "Place your support link or ID here.",
-			supportText:
-				"Add your payment link or donation ID here. This section is just a placeholder and can be customized.",
-			supportIdLabel: "ID",
-			supportNoteLabel: "Note",
-			supportIdValue: "donate-id",
-			supportNoteValue: "Your support keeps this tool fresh every day.",
-			buttonLabel: "Save support link",
-			buttonHint: "Save your payment link or ID here.",
+				"Use this tool to lock your text with a private key and unlock it later. Paste your text, encode it, then decode it with the same key whenever you need it. For better safety the default key rotates periodically, so if you want reliable access, set your own custom key.",
+			donateTitle: "Support & Donate",
+			donateIntro: "If this tool helps you, you can support it here:",
+			donateLinks: [
+				{ label: "Reymit", href: "https://reymit.ir/yacn9" },
+				{ label: "Daramet", href: "https://daramet.com/yacn9" },
+			],
+			donateWallets: [
+				{ label: "Tether (BEP20)", value: "0xa729EC0799Ef220f56A8e060E0c961a11925041c" },
+				{ label: "Tether (TRC20)", value: "TYUgWDrmoPfja1ueuYmLiGck6dURj5hM7D" },
+			],
 		},
 		help: {
 			languageToggle: "Switch the interface language.",

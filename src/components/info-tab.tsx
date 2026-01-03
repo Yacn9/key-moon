@@ -1,7 +1,5 @@
 import type { FC } from "react";
 
-import InfoHint from "@/components/info-hint";
-import { Button } from "@/components/ui/button";
 import { TabsContent } from "@/components/ui/tabs";
 import type { TAppCopy } from "@/i18n/content";
 import { cn } from "@/lib/utils";
@@ -24,33 +22,34 @@ const InfoTab: FC<TInfoTabProps> = ({ copy, isRtl }) => {
 				<div className="rounded-lg border border-border/60 bg-muted/30 p-4">
 					<p
 						className={cn(
-							"text-sm font-medium text-foreground flex items-center gap-2",
-							isRtl ? "flex-row-reverse justify-start text-right" : "justify-start text-left"
+							"text-sm font-medium text-foreground",
+							isRtl ? "text-right" : "text-left"
 						)}
 					>
-						<span>{copy.info.supportTitle}</span>
-						<InfoHint text={copy.info.supportHint} />
+						{copy.info.donateTitle}
 					</p>
-					<p className="mt-2 text-sm text-muted-foreground">{copy.info.supportText}</p>
-					<div className="mt-3 grid gap-2 text-xs text-muted-foreground">
-						<span>
-							{copy.info.supportIdLabel}: {copy.info.supportIdValue}
-						</span>
-						<span>
-							{copy.info.supportNoteLabel}: {copy.info.supportNoteValue}
-						</span>
+					<p className="mt-2 text-sm text-muted-foreground">{copy.info.donateIntro}</p>
+					<div className="mt-4 grid gap-2 text-sm">
+						{copy.info.donateLinks.map((link) => (
+							<a
+								key={link.href}
+								href={link.href}
+								target="_blank"
+								rel="noreferrer"
+								className="text-foreground hover:text-muted-foreground transition-colors"
+							>
+								{link.label}: {link.href}
+							</a>
+						))}
+					</div>
+					<div className="mt-4 grid gap-2 text-xs text-muted-foreground">
+						{copy.info.donateWallets.map((wallet) => (
+							<span key={wallet.value}>
+								{wallet.label}: {wallet.value}
+							</span>
+						))}
 					</div>
 				</div>
-				<Button
-					variant="secondary"
-					className={cn(
-						"w-full flex items-center gap-2",
-						isRtl ? "flex-row-reverse justify-start text-right" : "justify-start text-left"
-					)}
-				>
-					<span>{copy.info.buttonLabel}</span>
-					<InfoHint text={copy.info.buttonHint} className="h-4 w-4 text-[9px]" />
-				</Button>
 			</div>
 		</TabsContent>
 	);
