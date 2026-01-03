@@ -1,75 +1,71 @@
-import { useId, useMemo, useState } from "react";
+import { type FC, useMemo } from "react";
 
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
+import CodecPanel from "@/components/codec-panel";
 import { TabsContent } from "@/components/ui/tabs";
-import { NIBBLE_ALPHABET } from "@/constants/encoding";
-import { encodeText, resolveKey } from "@/lib/codec";
+import useCodecState from "@/hooks/use-codec-state";
+import type { TAppCopy } from "@/i18n/content";
+import { encodeText } from "@/lib/codec";
 
-export function EncodeTab() {
-	const [encodeInput, setEncodeInput] = useState("");
-	const [encodeKey, setEncodeKey] = useState("");
+type TEncodeTabProps = {
+	copy: TAppCopy;
+	isRtl: boolean;
+};
 
-	const idsBase = useId();
-	const textId = `${idsBase}-encode-text`;
-	const keyId = `${idsBase}-encode-key`;
-	const outputId = `${idsBase}-encode-output`;
+const EncodeTab: FC<TEncodeTabProps> = ({ copy, isRtl }) => {
+	const {
+		inputValue,
+		setInputValue,
+		keyValue,
+		setKeyValue,
+		textId,
+		keyId,
+		outputId,
+		resolvedKey,
+		keyStatus,
+		pasteFromClipboard,
+		copyToClipboard,
+	} = useCodecState({ idPrefix: "encode", copy });
 
-	const usingCustomKey = encodeKey.trim().length > 0;
-	const resolvedKey = useMemo(() => resolveKey(encodeKey), [encodeKey]);
 	const encodeResult = useMemo(
-		() => encodeText(encodeInput, resolvedKey),
-		[encodeInput, resolvedKey]
+		() => encodeText(inputValue, resolvedKey),
+		[inputValue, resolvedKey]
 	);
 
 	return (
 		<TabsContent value="encode">
-			<div className="grid gap-5 md:grid-cols-2">
-				<div className="space-y-2 md:col-span-2">
-					<label className="text-sm text-muted-foreground" htmlFor={textId}>
-						متن برای کدگذاری
-					</label>
-					<Textarea
-						id={textId}
-						value={encodeInput}
-						onChange={(event) => setEncodeInput(event.target.value)}
-						placeholder="برای شروع، متن خود را اینجا بنویسید."
-						className="min-h-[140px] text-right leading-7"
-					/>
-				</div>
-
-				<div className="space-y-2">
-					<label className="text-sm text-muted-foreground" htmlFor={keyId}>
-						کلید اختصاصی (اختیاری)
-					</label>
-					<Input
-						id={keyId}
-						value={encodeKey}
-						onChange={(event) => setEncodeKey(event.target.value)}
-						placeholder="اگر خالی باشد، کلید روزانه استفاده می‌شود."
-						className="text-right"
-					/>
-					<p className="text-xs text-muted-foreground">
-						کلید فعال: {usingCustomKey ? "سفارشی" : "روزانه"}
-					</p>
-				</div>
-
-				<div className="space-y-2 md:col-span-2">
-					<label className="text-sm text-muted-foreground" htmlFor={outputId}>
-						خروجی کدگذاری شده
-					</label>
-					<Textarea
-						id={outputId}
-						value={encodeResult}
-						readOnly
-						placeholder="خروجی اینجا نمایش داده می‌شود."
-						className="min-h-[120px] text-right leading-7"
-					/>
-					<p className="text-xs text-muted-foreground">
-						حروف مجاز خروجی: {NIBBLE_ALPHABET.join(" ")}
-					</p>
-				</div>
-			</div>
+			<CodecPanel
+				isRtl={isRtl}
+				input={{
+					id: textId,
+					label: copy.encode.inputLabel,
+					hint: copy.encode.inputHint,
+					placeholder: copy.encode.inputPlaceholder,
+					value: inputValue,
+					onChange: setInputValue,
+					actionLabel: copy.actions.paste,
+					onAction: () => void pasteFromClipboard(setInputValue),
+				}}
+				keyField={{
+					id: keyId,
+					label: copy.encode.keyLabel,
+					hint: copy.encode.keyHint,
+					placeholder: copy.encode.keyPlaceholder,
+					value: keyValue,
+					onChange: setKeyValue,
+					statusLabel: keyStatus,
+				}}
+				output={{
+					id: outputId,
+					label: copy.encode.outputLabel,
+					hint: copy.encode.outputHint,
+					placeholder: copy.encode.outputPlaceholder,
+					value: encodeResult,
+					actionLabel: copy.actions.copy,
+					onAction: () => copyToClipboard(encodeResult),
+				}}
+			/>
 		</TabsContent>
 	);
-}
+};
+
+export default EncodeTab;
