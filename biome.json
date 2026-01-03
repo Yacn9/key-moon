@@ -1,0 +1,11 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.2.5/schema.json",
+	"extends": ["../dizno-harmony-wheel/biome.json"],
+	"linter": {
+		"rules": {
+			"suspicious": {
+				"noUnknownAtRules": "off"
+			}
+		}
+	}
+}
