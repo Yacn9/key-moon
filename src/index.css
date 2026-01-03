@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(240 6% 6%);
+  --color-foreground: hsl(0 0% 98%);
+  --color-card: hsl(240 6% 8%);
+  --color-card-foreground: hsl(0 0% 98%);
+  --color-popover: hsl(240 6% 8%);
+  --color-popover-foreground: hsl(0 0% 98%);
+  --color-primary: hsl(0 0% 98%);
+  --color-primary-foreground: hsl(240 6% 8%);
+  --color-secondary: hsl(240 4% 16%);
+  --color-secondary-foreground: hsl(0 0% 98%);
+  --color-muted: hsl(240 4% 14%);
+  --color-muted-foreground: hsl(240 5% 65%);
+  --color-accent: hsl(240 4% 16%);
+  --color-accent-foreground: hsl(0 0% 98%);
+  --color-destructive: hsl(0 0% 28%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-border: hsl(240 4% 22%);
+  --color-input: hsl(240 4% 18%);
+  --color-ring: hsl(240 4% 40%);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Vazirmatn', ui-sans-serif, system-ui, sans-serif;
+    min-height: 100vh;
+    background-image: radial-gradient(
+        650px circle at 90% 10%,
+        hsl(240 6% 12% / 0.5),
+        transparent 45%
+      ),
+      radial-gradient(
+        500px circle at 10% 20%,
+        hsl(240 6% 14% / 0.5),
+        transparent 40%
+      ),
+      linear-gradient(180deg, hsl(240 6% 6%), hsl(240 6% 4%));
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+
+  .animate-soft-pulse {
+    animation: soft-pulse 2.6s ease-in-out infinite;
+  }
+}
