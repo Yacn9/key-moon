@@ -81,7 +81,7 @@ export const content: Record<TLanguage, TAppCopy> = {
 		header: {
 			badge: "کلید پیش‌فرض فعال است",
 			badgeHint: "اگر کلید اختصاصی وارد نکنید، کلید پیش‌فرض به صورت دوره‌ای عوض می‌شود.",
-			title: "رمزنگاری ساده، تیره و فارسی",
+			title: "کی‌مون - Key Moon",
 			subtitle:
 				"متن خود را با کلید دلخواه یا کلید پیش‌فرض تبدیل کنید. خروجی از حروف فارسی ساخته می‌شود تا خوانایی حفظ شود.",
 			languageLabel: "زبان",
@@ -158,7 +158,7 @@ export const content: Record<TLanguage, TAppCopy> = {
 		header: {
 			badge: "Default key is active",
 			badgeHint: "If you leave the key empty, the default key rotates periodically.",
-			title: "Simple, dark, Persian-friendly cipher",
+			title: "Key Moon - کی‌مون",
 			subtitle:
 				"Transform your text with a custom key or the default key. Output uses Persian letters to stay readable.",
 			languageLabel: "Language",

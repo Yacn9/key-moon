@@ -1,5 +1,7 @@
 # Key Moon
 
+![Key Moon](public/keymoon.png)
+
 Key Moon is a simple Persian-first tool for locking and unlocking text with a key. You paste your text, encode it, and later decode it with the same key. If you leave the key empty, the app uses a default key that rotates periodically for safety—so for reliable access, set your own custom key.
 
 ## How it works (non-technical)

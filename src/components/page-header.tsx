@@ -36,7 +36,6 @@ const PageHeader: FC<TPageHeaderProps> = ({ copy, language, isRtl, onLanguageCha
 					)}
 				>
 					<span>{copy.header.languageLabel}</span>
-					<InfoHint text={copy.help.languageToggle} className="h-4 w-4 text-[9px]" />
 					<Button
 						variant={language === "fa" ? "secondary" : "outline"}
 						size="sm"
