@@ -83,7 +83,7 @@ export const content: Record<TLanguage, TAppCopy> = {
 			badgeHint: "اگر کلید اختصاصی وارد نکنید، کلید پیش‌فرض به صورت دوره‌ای عوض می‌شود.",
 			title: "کی‌مون - Key Moon",
 			subtitle:
-				"متن خود را با کلید دلخواه یا کلید پیش‌فرض تبدیل کنید. خروجی از حروف فارسی ساخته می‌شود تا خوانایی حفظ شود.",
+				"متن خود را با کلید دلخواه یا کلید پیش‌فرض تبدیل کنید. خروجی از حروف فارسی ساخته می‌شود تا خوانایی حفظ شود و اگر طولانی باشد با جداکننده «~/~» به بخش‌های پیامک تقسیم می‌شود.",
 			languageLabel: "زبان",
 		},
 		card: {
@@ -138,7 +138,7 @@ export const content: Record<TLanguage, TAppCopy> = {
 		},
 		info: {
 			description:
-				"این ابزار به شما کمک می‌کند متن خود را با یک کلید خصوصی قفل کنید و هر زمان خواستید دوباره بازش کنید. کافی است متن را وارد کنید تا تبدیل شود، سپس با همان کلید آن را برگردانید. برای امنیت بیشتر، کلید پیش‌فرض به‌صورت دوره‌ای تغییر می‌کند؛ اگر می‌خواهید همیشه به متن‌تان دسترسی داشته باشید، بهتر است کلید اختصاصی خودتان را انتخاب کنید.",
+				"این ابزار به شما کمک می‌کند متن خود را با یک کلید خصوصی قفل کنید و هر زمان خواستید دوباره بازش کنید. کافی است متن را وارد کنید تا تبدیل شود، سپس با همان کلید آن را برگردانید. برای ارسال پیامک‌های طولانی، خروجی با جداکننده «~/~» شکسته می‌شود؛ هر بخش را جداگانه به‌صورت SMS بفرستید تا به MMS تبدیل نشود. برای امنیت بیشتر، کلید پیش‌فرض به‌صورت دوره‌ای تغییر می‌کند؛ اگر می‌خواهید همیشه به متن‌تان دسترسی داشته باشید، بهتر است کلید اختصاصی خودتان را انتخاب کنید.",
 			donateTitle: "حمایت و دونیت",
 			donateIntro: "اگر این ابزار برایتان مفید بود، می‌توانید از راه‌های زیر حمایت کنید:",
 			donateLinks: [
@@ -160,7 +160,7 @@ export const content: Record<TLanguage, TAppCopy> = {
 			badgeHint: "If you leave the key empty, the default key rotates periodically.",
 			title: "Key Moon - کی‌مون",
 			subtitle:
-				"Transform your text with a custom key or the default key. Output uses Persian letters to stay readable.",
+				"Transform your text with a custom key or the default key. Output uses Persian letters to stay readable and splits long messages with the ~/~ separator for SMS.",
 			languageLabel: "Language",
 		},
 		card: {
@@ -215,7 +215,7 @@ export const content: Record<TLanguage, TAppCopy> = {
 		},
 		info: {
 			description:
-				"Use this tool to lock your text with a private key and unlock it later. Paste your text, encode it, then decode it with the same key whenever you need it. For better safety the default key rotates periodically, so if you want reliable access, set your own custom key.",
+				"Use this tool to lock your text with a private key and unlock it later. Paste your text, encode it, then decode it with the same key whenever you need it. For long SMS messages, the output is split using the ~/~ separator; send each part as an SMS to avoid MMS. For better safety the default key rotates periodically, so if you want reliable access, set your own custom key.",
 			donateTitle: "Support & Donate",
 			donateIntro: "If this tool helps you, you can support it here:",
 			donateLinks: [

@@ -1,16 +1,17 @@
-import { NIBBLE_ALPHABET } from "@/constants/encoding";
+import {
+	DAILY_KEY,
+	DECODE_ERROR,
+	NIBBLE_ALPHABET,
+	SEGMENT_SEPARATOR,
+	SEGMENT_SIZE,
+} from "@/constants/encoding";
 import type { TAppCopy } from "@/i18n/content";
-import { DAILY_KEY } from "@/private/keys";
 
 const NIBBLE_LOOKUP = new Map<string, number>(NIBBLE_ALPHABET.map((char, index) => [char, index]));
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
-
-export const DECODE_ERROR = {
-	ODD_LENGTH: "ERR_ODD_LENGTH",
-	INVALID_CHAR: "ERR_INVALID_CHAR",
-} as const;
+const SEGMENT_JOINER = `${SEGMENT_SEPARATOR}\n\n`;
 
 export const resolveKey = (inputKey: string) => {
 	const trimmed = inputKey.trim();
@@ -42,11 +43,19 @@ export const encodeText = (value: string, key: string) => {
 	for (const byte of mixed) {
 		output += NIBBLE_ALPHABET[byte >> 4] + NIBBLE_ALPHABET[byte & 15];
 	}
-	return output;
+	if (output.length <= SEGMENT_SIZE) {
+		return output;
+	}
+
+	const segments: string[] = [];
+	for (let i = 0; i < output.length; i += SEGMENT_SIZE) {
+		segments.push(output.slice(i, i + SEGMENT_SIZE));
+	}
+	return segments.join(SEGMENT_JOINER);
 };
 
 export const decodeText = (value: string, key: string) => {
-	const cleaned = value.replaceAll(/\s+/g, "");
+	const cleaned = value.replaceAll(/\s+/g, "").split(SEGMENT_SEPARATOR).join("");
 	if (!cleaned) {
 		return "";
 	}
